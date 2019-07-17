@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="HelloGPV.jar" size="428129" download="eager" />
+    <jar href="HelloGPV.jar" size="428125" download="eager" />
     <jar href="lib\com.mysql.jdbc_5.1.5.jar" size="676712" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
   </resources>

@@ -124,7 +124,7 @@ public class MissionController implements Initializable {
             rs = statement.executeQuery("select * from conducteurs");
                      
             while(rs.next()){
-                conducteursAL.add(new Conducteur(rs.getString(2), rs.getString(3), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6) ) );
+                conducteursAL.add(new Conducteur(rs.getString(1), rs.getString(2), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5) ) );
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage()); 

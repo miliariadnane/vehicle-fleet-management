@@ -61,6 +61,7 @@ public class conducteurMController implements Initializable {
         
         String selectedConducteurId = editconducteurSelect.getValue().getIdConducteur();
         
+        System.out.println(selectedConducteurId);
         try { 
             
             ResultSet rs;

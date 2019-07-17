@@ -63,20 +63,7 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<ConducteurModule, String> conducteursTablePermi;
     
     ArrayList<ConducteurModule> conducteursAL = new ArrayList<>();
-    //ArrayList conducteursAL = new ArrayList<>();
-    /*
-    @FXML 
-    private void refreshTableView()
-    {
-        conducteursTableCheckBox.setVisible(false);
-        conducteursTableFirstName.setVisible(false);
-        conducteursTableLastName.setVisible(false); 
-        conducteursTableEmail.setVisible(true);
-        conducteursTableSex.setVisible(true);
-        conducteursTablePermi.setVisible(true);
-        conducteursTableDate.setVisible(true);
-    } 
-    */
+   
     public void refreshConducteurs(){
 
         conducteursTableCheckBox.setCellValueFactory(new PropertyValueFactory<>("checkBox"));

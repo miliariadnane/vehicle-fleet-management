@@ -88,7 +88,7 @@ public class Conducteur {
 
     @Override
     public String toString() {
-        return nomConducteur + " " + prenomConducteur;
+        return idConducteur + " | " + nomConducteur;
     }
 
 }

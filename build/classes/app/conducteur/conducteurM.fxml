@@ -185,9 +185,9 @@
             <Font name="Maiandra GD" size="21.0" />
          </font>
       </Label>
-      <JFXButton layoutX="27.0" layoutY="502.0" onAction="#supC" prefHeight="37.0" prefWidth="120.0" style="-fx-background-color: #FD5454;" text="Supprimer" textFill="#ebe3e3">
+      <JFXButton layoutX="27.0" layoutY="502.0" onAction="#supC" prefHeight="35.0" prefWidth="112.0" style="-fx-background-color: #FD5454;" text="Supprimer" textFill="#ebe3e3">
          <font>
-            <Font name="Bell MT Bold" size="19.0" />
+            <Font name="Bell MT" size="15.0" />
          </font>
       </JFXButton>
       <AnchorPane layoutY="459.0" prefHeight="31.0" prefWidth="471.0" style="-fx-background-color: #ddd;">
