@@ -4,10 +4,10 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSnackbar?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -18,11 +18,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="494.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginSinginController">
+<AnchorPane prefHeight="494.0" prefWidth="737.0" stylesheets="@../css/loginSingin.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginSinginController">
    <children>
       <AnchorPane prefHeight="494.0" prefWidth="737.0">
          <children>
-            <JFXTabPane layoutX="305.0" prefHeight="494.0" prefWidth="432.0">
+            <JFXTabPane layoutX="305.0" prefHeight="494.0" prefWidth="456.0">
                <tabs>
                   <Tab text="LOGIN">
                     <content>
@@ -70,22 +70,51 @@
                   </Tab>
                   <Tab text="SINGING">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="457.0" prefWidth="346.0" style="-fx-background-color: #60C7B6;">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="462.0" prefWidth="441.0" style="-fx-background-color: #60C7B6;">
                            <children>
-                              <Label alignment="CENTER" layoutX="-3.0" layoutY="35.0" prefHeight="30.0" prefWidth="438.0" style="-fx-background-color: DDD;" text="Information Personnelle" textFill="#030303">
+                              <Label alignment="CENTER" layoutX="-4.0" layoutY="25.0" prefHeight="30.0" prefWidth="464.0" style="-fx-background-color: DDD;" text="Information Personnelle" textFill="#030303">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <HBox layoutX="-3.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="440.0">
+                              <HBox layoutX="-3.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="464.0">
                                  <children>
-                                    <JFXRadioButton prefHeight="31.0" prefWidth="101.0" text="female" />
-                                    <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#uploadImage" prefHeight="49.0" prefWidth="233.0" style="-fx-background-color: #abc;" text="UPLOAD IMAGE" textFill="WHITE">
+                                    <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../files.img/man.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Male">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <JFXToggleButton fx:id="singinSex" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="45.0" prefHeight="33.0" prefWidth="54.0" text=" " toggleColor="#ff32b0" toggleLineColor="#ff36b585" unToggleColor="#00a7f8" unToggleLineColor="#75d3ff">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="10.0" />
+                                       </HBox.margin>
+                                    </JFXToggleButton>
+                                    <ImageView fitHeight="41.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../files.img/woman.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="17.0" prefWidth="49.0" text="Female" />
+                                    <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#uploadImage" prefHeight="49.0" prefWidth="156.0" style="-fx-background-color: #abc;" text="UPLOAD IMAGE" textFill="WHITE">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                        <padding>
-                                          <Insets bottom="3.0" right="5.0" top="3.0" />
+                                          <Insets bottom="3.0" right="10.0" top="3.0" />
                                        </padding>
                                        <graphic>
                                           <ImageView>
@@ -103,8 +132,7 @@
                                     <Insets left="30.0" right="30.0" top="10.0" />
                                  </padding>
                               </HBox>
-                              <JFXRadioButton layoutX="27.0" layoutY="246.0" prefHeight="30.0" prefWidth="79.0" text="mâle" />
-                              <HBox layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="432.0">
+                              <HBox layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="456.0">
                                  <children>
                                     <JFXTextField fx:id="singinCIN" focusColor="#676b6c" labelFloat="true" promptText="CIN">
                                        <HBox.margin>
@@ -135,7 +163,7 @@
                                     <Insets left="30.0" right="30.0" top="10.0" />
                                  </padding>
                               </HBox>
-                              <HBox layoutX="1.0" layoutY="149.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="432.0">
+                              <HBox layoutX="1.0" layoutY="149.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="456.0">
                                  <children>
                                     <JFXTextField fx:id="singinEmail" focusColor="#676b6c" labelFloat="true" prefHeight="30.0" prefWidth="202.0" promptText="Email">
                                        <HBox.margin>
@@ -155,12 +183,12 @@
                                     <Insets left="30.0" right="30.0" top="10.0" />
                                  </padding>
                               </HBox>
-                              <Label alignment="CENTER" layoutX="1.0" layoutY="293.0" prefHeight="30.0" prefWidth="438.0" style="-fx-background-color: DDD;" text="Sécurisation" textFill="#030303">
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="278.0" prefHeight="30.0" prefWidth="456.0" style="-fx-background-color: DDD;" text="Sécurisation" textFill="#030303">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <HBox layoutX="1.0" layoutY="323.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="432.0">
+                              <HBox layoutX="1.0" layoutY="323.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="456.0">
                                  <children>
                                     <JFXPasswordField fx:id="singingPassword" focusColor="#676b6c" labelFloat="true" prefHeight="30.0" prefWidth="180.0" promptText="Mot de passe">
                                        <font>
@@ -175,12 +203,13 @@
                                           <Font size="14.0" />
                                        </font>
                                     </JFXPasswordField>
+                                    <JFXSnackbar fx:id="snackbar2" />
                                  </children>
                                  <padding>
                                     <Insets left="30.0" right="30.0" top="5.0" />
                                  </padding>
                               </HBox>
-                              <JFXButton layoutX="88.0" layoutY="386.0" onAction="#login" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
+                              <JFXButton layoutX="88.0" layoutY="386.0" onAction="#singing" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="SINGIN" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -196,12 +225,12 @@
                   </Tab>
                </tabs>
             </JFXTabPane>
-            <ImageView fitHeight="205.0" fitWidth="293.0" layoutX="6.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img" fitHeight="205.0" fitWidth="293.0" layoutX="6.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../files.img/bienvenue-rim-730x482.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="260.0" fitWidth="266.0" layoutX="20.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="img1" fitHeight="260.0" fitWidth="266.0" layoutX="20.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../files.img/comment-gerer-ma-flotte-ou-mon-parc-auto.png" />
                </image>
@@ -210,9 +239,6 @@
                <padding>
                   <Insets left="3.0" right="3.0" />
                </padding>
-               <graphic>
-                  <FontAwesomeIcon fill="WHITE" iconName="DATABASE" />
-               </graphic>
             </Label>
          </children>
       </AnchorPane>
