@@ -1,36 +1,27 @@
 package app.home;
 
 
-import app.classes.Conducteur;
 import app.classes.DbConnection;
 import static app.classes.DbConnection.connection;
-import app.classes.Vehicule;
 import app.modules.ConducteurModule;
 import app.modules.assuranceModule;
 import app.modules.missionModule;
 import app.modules.reparationModule;
 import app.modules.vehiculeModule;
 import app.modules.vidangeModule;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,9 +30,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -51,7 +40,7 @@ import javafx.stage.StageStyle;
 public class HomeController implements Initializable {
     
     @FXML private JFXTextField searchBar;
-    Connection connection;
+
     //  Tables
     
     //  Driver tab
@@ -127,7 +116,7 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<vehiculeModule, String> typeVehicule;
     
     
-    private ArrayList <vehiculeModule> vehicules = new ArrayList();
+    private ArrayList <vehiculeModule> vehicules = new ArrayList<>();
     
     public void refreshVehicules(){
 

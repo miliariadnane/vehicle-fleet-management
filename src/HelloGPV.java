@@ -11,7 +11,7 @@ public class HelloGPV extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/app/home/home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("app/home/home.fxml"));
         
         Scene scene = new Scene(root);
         stage.setScene(scene);
