@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import java.net.URL?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -296,6 +297,7 @@
                                  </columnResizePolicy>
                               </TableView>
                               <JFXButton layoutX="14.0" layoutY="5.0" onAction="#module" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #47747B;" text="Mission" textFill="WHITE" />
+                              <JFXDatePicker fx:id="searchBar" layoutX="778.0" layoutY="6.0" onAction="#searchDate" />
                            </children>
                         </AnchorPane>
                      </content>

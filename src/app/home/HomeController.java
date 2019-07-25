@@ -61,7 +61,7 @@ import login.LoginSinginController;
  */
 public class HomeController implements Initializable {
     
-    @FXML private JFXTextField searchBar;
+    @FXML private JFXDatePicker searchBar;
     
     //  statictics conducteurs
     @FXML private Label labelF;
@@ -241,6 +241,8 @@ public class HomeController implements Initializable {
     
     private ArrayList <missionModule> mission = new ArrayList();
     
+    public static String searchDate ;
+    
     public void refreshMissions(){
 
         VehiculesTableCheckBox.setCellValueFactory(new PropertyValueFactory<>("checkBox"));
@@ -257,7 +259,7 @@ public class HomeController implements Initializable {
             Statement statement1 ;
             statement1 = connection.createStatement();
 
-            ResultSet rs1 = statement1.executeQuery("select * from missions");
+            ResultSet rs1 = statement1.executeQuery("select * from missions " + searchDate );
             while(rs1.next()){
                 
                 
@@ -283,6 +285,12 @@ public class HomeController implements Initializable {
         missionTable.refresh();
     }
   
+    
+    @FXML void searchDate(ActionEvent event) {
+        searchDate = " where dateFin = " + searchBar.getValue();
+        refreshMissions();
+    }
+    
     /*
     public void refreshModules(String libelle,String dateD){
         
