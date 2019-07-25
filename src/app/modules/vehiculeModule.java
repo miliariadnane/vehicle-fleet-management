@@ -13,11 +13,9 @@ public class vehiculeModule extends Vehicule{
     private JFXCheckBox checkBox;
     private String typeVEH;
 
-    public vehiculeModule(String matricule, String marqueV, String typeCarb, String dateAssur, String dateVidange) {
-        super(matricule, marqueV, typeCarb, dateAssur, dateVidange);
-        this.checkBox = checkBox;
+    public vehiculeModule(String matricule, String marqueV, String typeCarb, String dateAssur, String dateAssur2, String dateVidange) {
+        super(matricule, marqueV, typeCarb, dateAssur, dateAssur2, dateVidange);
         this.typeVEH = typeVEH;
-        
     }
 
     public vehiculeModule() {

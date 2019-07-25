@@ -16,8 +16,8 @@ public class missionModule extends mission {
     
     private JFXCheckBox checkBox;
 
-    public missionModule(String libelle, String vehicule, String conducteur, String typeV, String description, String dateD, String DateF, int percentage) {
-        super(libelle, vehicule, conducteur, typeV, description, dateD, DateF, percentage);
+    public missionModule(String libelle, String vehicule, String conducteur, String description, String dateD, String DateF, int percentage) {
+        super(libelle, vehicule, conducteur, description, dateD, DateF, percentage);
     }
 
     public missionModule() { 

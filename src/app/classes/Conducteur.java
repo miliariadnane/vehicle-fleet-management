@@ -2,8 +2,9 @@
 package app.classes;
 
 import java.util.ArrayList;
+import app.classes.Type;
 
-public class Conducteur {
+public class Conducteur{
     
     private String idConducteur;
     private String nomConducteur;
@@ -21,6 +22,7 @@ public class Conducteur {
         this.genreConducteur = genreConducteur;
         this.dateConducteur = dateConducteur;
     }
+    
 
     public Conducteur() {
     }
@@ -85,10 +87,9 @@ public class Conducteur {
     public void setTypeP(ArrayList typeP) {
         this.typeP = typeP;
     }
-
+    
     @Override
     public String toString() {
         return idConducteur + " | " + nomConducteur;
     }
-
 }

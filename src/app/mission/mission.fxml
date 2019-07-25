@@ -9,7 +9,6 @@
 <?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -43,7 +42,7 @@
                </font>
             </Label>
             <JFXComboBox fx:id="newConducteur" focusColor="#60c7b6" layoutX="104.0" layoutY="221.0" prefHeight="25.0" prefWidth="210.0" />
-            <Label layoutX="14.0" layoutY="314.0" prefHeight="36.0" prefWidth="98.0" text="Description">
+            <Label layoutX="14.0" layoutY="277.0" prefHeight="36.0" prefWidth="98.0" text="Description">
                <font>
                   <Font name="Bell MT" size="16.0" />
                </font>
@@ -60,32 +59,22 @@
                   <Font name="Bell MT" size="16.0" />
                </font>
             </Label>
-            <JFXTextArea fx:id="description" focusColor="#60c7b6" layoutX="104.0" layoutY="332.0" prefHeight="109.0" prefWidth="210.0" style="-fx-border-color: #5C5858;">
-               <effect>
-                  <DropShadow />
-               </effect>
-            </JFXTextArea>
+            <JFXTextArea fx:id="description" focusColor="#60c7b6" layoutX="104.0" layoutY="295.0" prefHeight="109.0" prefWidth="210.0" style="-fx-border-color: #5C5858;" />
             <Label layoutX="353.0" layoutY="216.0" prefHeight="36.0" prefWidth="106.0" text="Etat tâche">
                <font>
                   <Font name="Bell MT" size="16.0" />
                </font>
             </Label>
-            <JFXButton layoutX="533.0" layoutY="404.0" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Annuler" textFill="WHITE">
+            <JFXButton layoutX="533.0" layoutY="404.0" onAction="#close" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Fermer" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="408.0" layoutY="404.0" onAction="#addMission" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="Sauvgarder" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="missionBtnS" layoutX="408.0" layoutY="404.0" onAction="#addMission" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="Sauvgarder" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <Label layoutX="14.0" layoutY="266.0" prefHeight="36.0" prefWidth="98.0" text="Type">
-               <font>
-                  <Font name="Bell MT" size="16.0" />
-               </font>
-            </Label>
-            <JFXComboBox fx:id="newType" focusColor="#60c7b6" layoutX="104.0" layoutY="272.0" prefHeight="25.0" prefWidth="210.0" />
             <JFXSlider fx:id="Percentage" layoutX="455.0" layoutY="225.0" prefHeight="43.0" prefWidth="210.0" showTickLabels="true" showTickMarks="true">
                <padding>
                   <Insets top="5.0" />

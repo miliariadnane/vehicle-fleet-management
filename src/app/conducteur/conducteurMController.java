@@ -6,6 +6,7 @@ import static app.classes.DbConnection.connection;
 import app.home.HomeController;
 import app.modules.ConducteurModule;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -20,6 +21,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,16 +46,17 @@ public class conducteurMController implements Initializable {
     
     
     //  edit
-    @FXML private JFXComboBox <ConducteurModule> editconducteurSelect;
+    @FXML private JFXComboBox <Conducteur> editconducteurSelect;
     @FXML private JFXTextField editCIN;
     @FXML private JFXTextField editNom;
     @FXML private JFXTextField editPrenom;
     @FXML private JFXTextField editEmail;
     @FXML private JFXDatePicker editDateN;
-    @FXML private JFXComboBox editTypeP;
     @FXML private JFXToggleButton editGenre;
+    @FXML private JFXCheckBox A1,A,B,C,D,EC,EB,ED;
           
     //  Select to edit
+    
     @FXML void selectedConducteur(ActionEvent event) {
         
         if(editconducteurSelect.getValue() == null){
@@ -61,19 +65,21 @@ public class conducteurMController implements Initializable {
         
         String selectedConducteurId = editconducteurSelect.getValue().getIdConducteur();
         
-        System.out.println(selectedConducteurId);
         try { 
             
             ResultSet rs;
             Statement statement = connection.createStatement();
             rs = statement.executeQuery("select * from conducteurs where conducteursId =  \"" + selectedConducteurId + "\"  ");
             rs.next();
-                editCIN.setText(rs.getString(1));  
-                editNom.setText(rs.getString(2));  
-                editPrenom.setText(rs.getString(3)); 
-                editEmail.setText(rs.getString(5));
-                editDateN.setValue(LocalDate.parse(rs.getString(6)));
-                editGenre.setText(rs.getString(4));       
+              
+                editCIN.setText(rs.getString(2));
+                editNom.setText(rs.getString(3));  
+                editPrenom.setText(rs.getString(4)); 
+                editEmail.setText(rs.getString(6));
+                editDateN.setValue(LocalDate.parse(rs.getString(7)));
+                editGenre.setText(rs.getString(5)); 
+                
+                
                 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -96,35 +102,36 @@ public class conducteurMController implements Initializable {
         
         String selectedConducteurId = editconducteurSelect.getValue().getIdConducteur();
         
-        if (editCIN.getText().equals("") || editNom.getText().equals("") || editPrenom.getText().equals("") || editEmail.getText().equals("") ){
+        if (editCIN.getText() == null || editNom.getText() == null || editPrenom.getText() == null || editEmail.getText() == null || editGenre.getText() == null || editDateN.getValue().equals("") ){
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erreur");
             alert.setHeaderText("Fill all fields");
-            //alert.setContentText("");
-
             ButtonType cancelButton = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(cancelButton);
-            
             alert.showAndWait();
         
         }else{
             
-            String dateS = editDateN.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));    
-            
+            String id = editCIN.getText();
+            String permiss = "";
+            String date1 = editDateN.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));    
+            Statement statement1,statement2;
             try {
                 
-                Statement statement = connection.createStatement();
-                statement.execute("update conducteurs set conducteursId = '" + editCIN.getText() + "', nom = '" + editNom.getText() + "', prenom = '" + editPrenom.getText()+ "', genre = '" + editGenre.getText()+"', email = '" + editEmail.getText()+ dateS + "' where moduleId = '" + selectedConducteurId + "'  ");
-                statement.close();
+                statement1 = connection.createStatement();
+                statement2 = connection.createStatement();
                 
+                statement1.executeUpdate("update conducteurs set conducteursId = '" + editCIN.getText() + "' ,nom = '" + editNom.getText() + "', prenom = '" + editPrenom.getText()+ "', genre = '" + editGenre.getText()+"', email = '" + editEmail.getText()+ "', dateN = '"+ date1 + "' where conducteursId = '" + selectedConducteurId + "'");
+                statement1.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            
         }
-        
+        newSaveBtn.getScene().getWindow().hide();
     }
-    
     //  Delete Module
     
     @FXML void supC (ActionEvent event) {
@@ -133,10 +140,10 @@ public class conducteurMController implements Initializable {
         
         if(editconducteurSelect.getValue() == null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setHeaderText("Select module ?");
+            alert.setTitle("Erreur");
+            alert.setHeaderText("selctionner un conducteur ?");
             //alert.setContentText("");
-            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            ButtonType cancelButton = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
             alert.getButtonTypes().setAll(cancelButton);
             Optional<ButtonType> result = alert.showAndWait();  
             return;
@@ -161,22 +168,30 @@ public class conducteurMController implements Initializable {
             return;
         }
         
-        //  Delete subscribes of student into this module
+        //  Delete 
+       
         try {
             PreparedStatement statment = (PreparedStatement) connection.prepareStatement("delete from conducteurs where conducteursId = '"+ selectedConducteurId +"' ");
             statment.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n" + e.getCause());
         }
+        
+        try {
+            PreparedStatement statment = (PreparedStatement) connection.prepareStatement("delete from typepermi where conducteursId = '"+ selectedConducteurId +"'");
+            statment.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage() + "\n" + e.getCause());
+        }
+
+        newSaveBtn.getScene().getWindow().hide();
     }    
     
     //  CLOSE  //
     @FXML void close(ActionEvent event) {
         newSaveBtn.getScene().getWindow().hide();
     }
-    
-    
-    
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //  Set conducteurs
@@ -194,7 +209,7 @@ public class conducteurMController implements Initializable {
             System.out.println(ex.getMessage()); 
         }
 
-        ObservableList<ConducteurModule> conducteurOL = FXCollections.observableArrayList(conducteursAL);
+        ObservableList<Conducteur> conducteurOL = FXCollections.observableArrayList(conducteursAL);
         editconducteurSelect.setItems(conducteurOL);
         
     }    

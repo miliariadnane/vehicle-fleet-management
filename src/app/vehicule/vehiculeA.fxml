@@ -91,9 +91,14 @@
                </padding>
                <children>
                   <JFXComboBox fx:id="typeC" prefHeight="25.0" prefWidth="180.0" promptText="TYPE CARBURANT" />
+                  <JFXDatePicker fx:id="dateV" prefHeight="28.0" prefWidth="191.0" promptText="DATE VIDANGE">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </JFXDatePicker>
                </children>
             </HBox>
-            <JFXButton layoutX="345.0" layoutY="501.0" onAction="#close" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Annuler" textFill="WHITE">
+            <JFXButton layoutX="345.0" layoutY="501.0" onAction="#close" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Fermer" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -109,7 +114,7 @@
                </padding>
                <children>
                   <JFXDatePicker fx:id="dateA" prefHeight="28.0" prefWidth="192.0" promptText="DATE ASSURANCE" />
-                  <JFXDatePicker fx:id="dateV" prefHeight="28.0" prefWidth="192.0" promptText="DATE VIDANGE">
+                  <JFXDatePicker fx:id="dateA2" prefHeight="28.0" prefWidth="192.0" promptText="EXIRAPTION ASSURANCE">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>

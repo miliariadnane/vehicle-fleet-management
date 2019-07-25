@@ -17,18 +17,39 @@ public class Vehicule {
     private String marqueV;
     private String typeCarb;
     private String dateAssur;
+    private String dateAssur2;
     private String dateVidange;
     public ArrayList typeV = new ArrayList();
+    private int nombreJour;
+    private int nombreJour2;
 
-    public Vehicule(String matricule, String marqueV, String typeCarb, String dateAssur, String dateVidange) {
+    public Vehicule(String matricule, String marqueV, String typeCarb, String dateAssur, String dateAssur2, String dateVidange) {
         this.matricule = matricule;
         this.marqueV = marqueV;
         this.typeCarb = typeCarb;
         this.dateAssur = dateAssur;
+        this.dateAssur2 = dateAssur2;
         this.dateVidange = dateVidange;
+        this.nombreJour = nombreJour;
     }
 
     public Vehicule() {
+    }
+
+    public int getNombreJour() {
+        return nombreJour;
+    }
+
+    public void setNombreJour(int nombreJour) {
+        this.nombreJour = nombreJour;
+    }
+
+    public int getNombreJour2() {
+        return nombreJour2;
+    }
+
+    public void setNombreJour2(int nombreJour2) {
+        this.nombreJour2 = nombreJour2;
     }
 
     public String getMatricule() {
@@ -79,9 +100,17 @@ public class Vehicule {
         this.typeV = typeV;
     }
 
+    public String getDateAssur2() {
+        return dateAssur2;
+    }
+
+    public void setDateAssur2(String dateAssur2) {
+        this.dateAssur2 = dateAssur2;
+    }
+
     @Override
     public String toString() {
-        return   matricule + "  " + marqueV ;
+        return   matricule + "  " + marqueV + "  " + typeV ;
     }
 
      

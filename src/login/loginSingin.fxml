@@ -24,16 +24,16 @@
          <children>
             <JFXTabPane layoutX="305.0" prefHeight="494.0" prefWidth="456.0">
                <tabs>
-                  <Tab text="LOGIN">
+                  <Tab text="Se connecter">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #60C7B6;">
                            <children>
-                              <JFXButton layoutX="235.0" layoutY="383.0" onAction="#cancel" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="CANCEL" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="383.0">
+                              <JFXButton layoutX="235.0" layoutY="383.0" onAction="#cancel" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Fermer" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="383.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="95.0" layoutY="383.0" onAction="#login" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="LOGIN" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="236.0" AnchorPane.topAnchor="383.0">
+                              <JFXButton layoutX="95.0" layoutY="383.0" onAction="#login" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="Se conncter" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="236.0" AnchorPane.topAnchor="383.0">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -68,7 +68,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="SINGING">
+                  <Tab text="Créer un compte">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="462.0" prefWidth="441.0" style="-fx-background-color: #60C7B6;">
                            <children>
@@ -209,12 +209,12 @@
                                     <Insets left="30.0" right="30.0" top="5.0" />
                                  </padding>
                               </HBox>
-                              <JFXButton layoutX="88.0" layoutY="386.0" onAction="#singing" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="SINGIN" textAlignment="CENTER" textFill="WHITE">
+                              <JFXButton layoutX="88.0" layoutY="386.0" onAction="#singing" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="Se connecter" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton layoutX="226.0" layoutY="386.0" onAction="#cancel" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="CANCEL" textFill="WHITE">
+                              <JFXButton layoutX="226.0" layoutY="386.0" onAction="#cancel" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Fermer" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

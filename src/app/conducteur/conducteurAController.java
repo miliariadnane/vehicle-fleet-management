@@ -8,6 +8,7 @@ package app.conducteur;
 import app.classes.DbConnection;
 import static app.classes.DbConnection.connection;
 import app.classes.Type;
+import app.home.HomeController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -58,7 +59,7 @@ import jdk.nashorn.internal.objects.NativeArray;
 public class conducteurAController implements Initializable {
     
     //  Btns
-    @FXML private JFXButton SaveBtn;
+    @FXML private JFXButton ajouterBtnS;
     @FXML private AnchorPane paneRoot;
     
     //  new
@@ -67,7 +68,6 @@ public class conducteurAController implements Initializable {
     @FXML private JFXTextField prenom;
     @FXML private JFXTextField email;
     @FXML private JFXDatePicker dateN;
-    @FXML private JFXComboBox typeP;
     @FXML private JFXToggleButton genre;
     
     @FXML private JFXCheckBox A1,A,B,C,D,EC,EB,ED;
@@ -76,7 +76,7 @@ public class conducteurAController implements Initializable {
     
     @FXML private ImageView img;
     @FXML private ImageView img1;
-    
+
     // UPLOADING IMAGE /////////////////////////////////////////////////////////
     
 
@@ -125,15 +125,13 @@ public class conducteurAController implements Initializable {
             } catch (Exception ex) {
                 System.out.println(ex.getCause());
             }
-
-            
     }
     
      
     @FXML void saveC(ActionEvent event) {
         
         Connection connection = DbConnection.DbConnect();
-
+        
         String id = CIN.getText();
         String fn = nom.getText();
         String ln = prenom.getText();
@@ -142,7 +140,7 @@ public class conducteurAController implements Initializable {
         String sx = (!genre.isSelected()) ? "M" : "F";// MALE FEMALE
         String permiss = "";
 
-        if (fn.equals("") || ln.equals("") || em.equals("") ){
+        if (fn.equals("") || ln.equals("") || em.equals("") || date.equals("") ){
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
@@ -183,26 +181,26 @@ public class conducteurAController implements Initializable {
             Statement statement = connection.createStatement();
             
                 //  driver  
-                statement.execute("insert into conducteurs values('" + id + "','" + fn + "','" + ln + "','" + sx + "','" + em + "', '" + date + "')");
+                statement.execute("insert into conducteurs(conducteursId,nom,prenom,genre,email,dateN,existC) values('" + id + "','" + fn + "','" + ln + "','" + sx + "','" + em + "', '" + date + "','0')");
 
             statement.close();
 
         }catch (Exception ex) {
             ex.printStackTrace();
         }
+        ajouterBtnS.getScene().getWindow().hide();
+        
     }
+    
 
     //  CLOSE  //
     @FXML void close(ActionEvent event) {
-        SaveBtn.getScene().getWindow().hide();
+        ajouterBtnS.getScene().getWindow().hide();
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        
-        
+      
     }      
 }
 

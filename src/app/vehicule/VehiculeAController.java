@@ -63,6 +63,7 @@ public class VehiculeAController implements Initializable {
     @FXML private JFXTextField matricule;
     @FXML private JFXTextField marque;
     @FXML private JFXDatePicker dateA;
+    @FXML private JFXDatePicker dateA2;
     @FXML private JFXDatePicker dateV;
 
     //
@@ -70,10 +71,9 @@ public class VehiculeAController implements Initializable {
     
     @FXML private JFXRadioButton moto,voiture,camionette;
     
-
-    
     @FXML private ImageView img;
     @FXML private ImageView img1;
+    
     
     // UPLOADING IMAGE /////////////////////////////////////////////////////////
     
@@ -126,7 +126,6 @@ public class VehiculeAController implements Initializable {
 
             
     }
-    
      
     @FXML void saveV(ActionEvent event) {
         
@@ -134,8 +133,9 @@ public class VehiculeAController implements Initializable {
 
         String mat = matricule.getText();
         String marq = marque.getText();
-        String typeC = marque.getText();
+        String typeCar = (String) typeC.getValue();
         String dateAssu = dateA.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String dateAssu2 = dateA2.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String dateVid = dateV.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         if (mat.equals("") || marq.equals("") || typeC.equals("") ){
@@ -168,15 +168,15 @@ public class VehiculeAController implements Initializable {
 
         try {
             Statement statement = connection.createStatement();
-            
-                //  driver  
-                statement.execute("insert into vehicules values('" + mat + "','" + marq + "','" + typeC + "','" + dateAssu + "','" + dateVid + "')");
+            //  cars  
+            statement.execute("insert into vehicules(vehiculesMatr, vehiculesMarque, vehiculesCarb, vehiculesDateAss, vehiculesDateAss2, vehiculesDateVid) values('" + mat + "','" + marq + "','" + typeCar + "','" + dateAssu + "','" + dateAssu2 + "','" + dateVid + "')");
 
             statement.close();
 
         }catch (Exception ex) {
             ex.printStackTrace();
         }
+        saveBtnV.getScene().getWindow().hide();
     }
 
     //  CLOSE  //

@@ -10,17 +10,15 @@ public class mission {
     private String libelle;
     private String vehicule;
     private String conducteur;
-    private String typeV;
     private String description;
     private String dateD;
     private String DateF;
     private int percentage;
 
-    public mission(String libelle, String vehicule, String conducteur, String typeV, String description, String dateD, String DateF, int percentage) {
+    public mission(String libelle, String vehicule, String conducteur, String description, String dateD, String DateF, int percentage) {
         this.libelle = libelle;
         this.vehicule = vehicule;
         this.conducteur = conducteur;
-        this.typeV = typeV;
         this.description = description;
         this.dateD = dateD;
         this.DateF = DateF;
@@ -40,10 +38,6 @@ public class mission {
 
     public String getConducteur() {
         return conducteur;
-    }
-
-    public String getTypeV() {
-        return typeV;
     }
 
     public String getDescription() {
@@ -74,10 +68,6 @@ public class mission {
         this.conducteur = conducteur;
     }
 
-    public void setTypeV(String typeV) {
-        this.typeV = typeV;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -94,8 +84,8 @@ public class mission {
         this.percentage = percentage;
     }
 
-    @Override
-    public String toString() {
-        return "mission{" + "libelle=" + libelle + ", vehicule=" + vehicule + ", conducteur=" + conducteur + ", typeV=" + typeV + ", description=" + description + ", dateD=" + dateD + ", DateF=" + DateF + ", percentage=" + percentage + '}';
+    public mission(String libelle) {
+        this.libelle = libelle;
     }
+
 }

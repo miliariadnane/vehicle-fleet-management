@@ -11,7 +11,7 @@ public class DbConnection {
     public static Connection DbConnect(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gpv", "root", "rootroot");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gpv2", "root", "");
             return connection;
         } catch (Exception ex) {
             ex.printStackTrace();
