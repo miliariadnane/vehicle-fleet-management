@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="481.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.vehicule.VehiculeMController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="599.0" prefWidth="421.0" style="-fx-background-color: #D9E9E8;">
+         <children>
+            <AnchorPane prefHeight="65.0" prefWidth="484.0" style="-fx-background-color: #60C7B6;">
+               <children>
+                  <Label layoutX="14.0" layoutY="13.0" prefHeight="36.0" prefWidth="286.0" text="Modifier le véhicule" textFill="#f5efef">
+                     <font>
+                        <Font name="Maiandra GD" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HBox layoutY="65.0" prefHeight="117.0" prefWidth="484.0">
+               <children>
+                  <AnchorPane prefHeight="96.0" prefWidth="105.0" style="-fx-background-color: #ccc; -fx-background-radius: 2px;">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <ImageView fitHeight="99.0" fitWidth="101.0" layoutX="3.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../files.img/car.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <JFXComboBox fx:id="editvehiculeSelect" onAction="#selectedVehicule" prefHeight="32.0" prefWidth="181.0" promptText="Précisez le véhicule">
+                     <HBox.margin>
+                        <Insets left="100.0" top="30.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+               </padding>
+            </HBox>
+            <AnchorPane layoutY="181.0" prefHeight="31.0" prefWidth="482.0" style="-fx-background-color: #ddd;">
+               <children>
+                  <Label layoutX="28.0" prefHeight="30.0" prefWidth="236.0" text="Des informations sur le véhicule">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HBox layoutX="-2.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="484.0">
+               <children>
+                  <JFXTextField fx:id="editMatricule" labelFloat="true" prefHeight="25.0" prefWidth="180.0" promptText="MATRICULE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="editMarque" labelFloat="true" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="180.0" promptText="MARQUE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="45.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="482.0">
+               <padding>
+                  <Insets left="30.0" right="30.0" top="10.0" />
+               </padding>
+               <children>
+                  <JFXComboBox fx:id="editCarburant" prefHeight="25.0" prefWidth="180.0" promptText="TYPE CARBURANT" />
+                  <JFXDatePicker fx:id="editDateV" prefHeight="28.0" prefWidth="192.0" promptText="DATE VIDANGE">
+                     <HBox.margin>
+                        <Insets left="45.0" />
+                     </HBox.margin>
+                  </JFXDatePicker>
+               </children>
+            </HBox>
+            <JFXButton layoutX="349.0" layoutY="548.0" onAction="#close" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Fermer" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="editBtnV" layoutX="236.0" layoutY="548.0" onAction="#editSaveV" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="Sauvgarder" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <HBox layoutX="-2.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="484.0">
+               <padding>
+                  <Insets left="30.0" right="30.0" top="10.0" />
+               </padding>
+               <children>
+                  <JFXDatePicker fx:id="editDateAss" prefHeight="28.0" prefWidth="192.0" promptText="DATE ASSURANCE" />
+                  <JFXDatePicker fx:id="editDateAss2" prefHeight="28.0" prefWidth="192.0" promptText="EXPIRATION ASSURANCE">
+                     <HBox.margin>
+                        <Insets left="35.0" />
+                     </HBox.margin>
+                  </JFXDatePicker>
+               </children>
+            </HBox>
+            <JFXButton layoutX="29.0" layoutY="504.0" onAction="#supV" prefHeight="35.0" prefWidth="112.0" style="-fx-background-color: #FD5454;" text="Supprimer" textFill="#ebe3e3">
+               <font>
+                  <Font name="Bell MT" size="15.0" />
+               </font>
+            </JFXButton>
+            <AnchorPane layoutY="464.0" prefHeight="31.0" prefWidth="482.0" style="-fx-background-color: #ddd;">
+               <children>
+                  <Label layoutX="28.0" prefHeight="30.0" prefWidth="188.0" text="Supprimer la véhicule">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <HBox layoutY="377.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="484.0">
+               <padding>
+                  <Insets left="30.0" right="30.0" top="10.0" />
+               </padding>
+               <children>
+                  <JFXRadioButton fx:id="moto" text="MOTO" />
+                  <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../../files.img/motorbiking.png" />
+                     </image>
+                  </ImageView>
+                  <JFXRadioButton fx:id="voiture" text="VOITURE" />
+                  <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../files.img/suv%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <JFXRadioButton fx:id="camionette" text="CAMIONNETTE" />
+                  <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../files.img/delivery-truck.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

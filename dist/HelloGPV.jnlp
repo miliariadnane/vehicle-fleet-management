@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="HelloGPV.jnlp">
+  <information>
+    <title>HelloGPV</title>
+    <vendor>pc</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="HelloGPV.jar" size="594768" download="eager" />
+    <jar href="lib\com.mysql.jdbc_5.1.5.jar" size="676712" download="eager" />
+    <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="HelloGPV" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="HelloGPV"  name="HelloGPV" />
+  <update check="always"/>
+</jnlp>

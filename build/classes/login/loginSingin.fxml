@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXSnackbar?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="494.0" prefWidth="737.0" stylesheets="@../css/loginSingin.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginSinginController">
+   <children>
+      <AnchorPane prefHeight="494.0" prefWidth="737.0">
+         <children>
+            <JFXTabPane layoutX="305.0" prefHeight="494.0" prefWidth="456.0">
+               <tabs>
+                  <Tab text="Se connecter">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #60C7B6;">
+                           <children>
+                              <JFXButton layoutX="235.0" layoutY="383.0" onAction="#cancel" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Fermer" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="383.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="95.0" layoutY="383.0" onAction="#login" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="Se conncter" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="236.0" AnchorPane.topAnchor="383.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXTextField fx:id="loginUsername" focusColor="#676b6c" labelFloat="true" layoutX="57.0" layoutY="163.0" prefHeight="30.0" prefWidth="334.0" promptText="Nom d'utilisateur (Email oU CIN)">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXPasswordField fx:id="loginPassword" focusColor="#676b6c" labelFloat="true" layoutX="58.0" layoutY="260.0" prefHeight="30.0" prefWidth="333.0" promptText="Mot de passe">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXPasswordField>
+                              <JFXCheckBox layoutX="57.0" layoutY="328.0" prefHeight="25.0" prefWidth="155.0" text="Remember Me !" />
+                              <Hyperlink layoutX="241.0" layoutY="327.0" text="Mot de passe oublié ?" textFill="#1e1d1d">
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                              </Hyperlink>
+                              <ImageView fitHeight="32.0" fitWidth="30.0" layoutX="27.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../files.img/icons8-male-user-60.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="24.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../files.img/icons8-unlock-filled-50.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Créer un compte">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="462.0" prefWidth="441.0" style="-fx-background-color: #60C7B6;">
+                           <children>
+                              <Label alignment="CENTER" layoutX="-4.0" layoutY="25.0" prefHeight="30.0" prefWidth="464.0" style="-fx-background-color: DDD;" text="Information Personnelle" textFill="#030303">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox layoutX="-3.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="464.0">
+                                 <children>
+                                    <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../files.img/man.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Male">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <JFXToggleButton fx:id="singinSex" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="45.0" prefHeight="33.0" prefWidth="54.0" text=" " toggleColor="#ff32b0" toggleLineColor="#ff36b585" unToggleColor="#00a7f8" unToggleLineColor="#75d3ff">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="10.0" />
+                                       </HBox.margin>
+                                    </JFXToggleButton>
+                                    <ImageView fitHeight="41.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../files.img/woman.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label prefHeight="17.0" prefWidth="49.0" text="Female" />
+                                    <JFXButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#uploadImage" prefHeight="49.0" prefWidth="156.0" style="-fx-background-color: #abc;" text="UPLOAD IMAGE" textFill="WHITE">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="3.0" right="10.0" top="3.0" />
+                                       </padding>
+                                       <graphic>
+                                          <ImageView>
+                                             <image>
+                                                <Image url="@../../../../../Desktop/tuto%20PROJET/Poject%20NetBeans/L'avant%20final%20version/smsProject%20ok/src/files/img/image.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <HBox.margin>
+                                          <Insets top="7.0" />
+                                       </HBox.margin>
+                                    </JFXButton>
+                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" right="30.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="456.0">
+                                 <children>
+                                    <JFXTextField fx:id="singinCIN" focusColor="#676b6c" labelFloat="true" promptText="CIN">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="singinFirstName" focusColor="#676b6c" labelFloat="true" layoutX="40.0" layoutY="20.0" promptText="Nom">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="singinLastName" focusColor="#676b6c" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Prénom">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </JFXTextField>
+                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" right="30.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="1.0" layoutY="149.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="456.0">
+                                 <children>
+                                    <JFXTextField fx:id="singinEmail" focusColor="#676b6c" labelFloat="true" prefHeight="30.0" prefWidth="202.0" promptText="Email">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXDatePicker fx:id="singingDate" defaultColor="#676b6c" prefHeight="30.0" prefWidth="181.0" promptText="Date de naissance" styleClass="date" stylesheets="@../../../../../Desktop/tuto%20PROJET/Poject%20NetBeans/L'avant%20final%20version/smsProject%20ok/src/files/css/loginSingin.css">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </JFXDatePicker>
+                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" right="30.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="1.0" layoutY="278.0" prefHeight="30.0" prefWidth="456.0" style="-fx-background-color: DDD;" text="Sécurisation" textFill="#030303">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <HBox layoutX="1.0" layoutY="323.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="63.0" prefWidth="456.0">
+                                 <children>
+                                    <JFXPasswordField fx:id="singingPassword" focusColor="#676b6c" labelFloat="true" prefHeight="30.0" prefWidth="180.0" promptText="Mot de passe">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                    </JFXPasswordField>
+                                    <JFXPasswordField fx:id="singingPasswordC" focusColor="#676b6c" labelFloat="true" prefHeight="30.0" prefWidth="180.0" promptText="Mot de passe encore">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXPasswordField>
+                                    <JFXSnackbar fx:id="snackbar2" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" right="30.0" top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <JFXButton layoutX="88.0" layoutY="386.0" onAction="#singing" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="Se connecter" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton layoutX="226.0" layoutY="386.0" onAction="#cancel" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #D8A006;" text="Fermer" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+            <ImageView fx:id="img" fitHeight="205.0" fitWidth="293.0" layoutX="6.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../files.img/bienvenue-rim-730x482.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="img1" fitHeight="260.0" fitWidth="266.0" layoutX="20.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../files.img/comment-gerer-ma-flotte-ou-mon-parc-auto.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="connectedLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="103.0" style="-fx-background-color: #60C7B6; -fx-background-radius: 3px;" text="CONNECTED" textFill="WHITE">
+               <padding>
+                  <Insets left="3.0" right="3.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
