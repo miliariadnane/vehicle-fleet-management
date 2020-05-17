@@ -72,6 +72,7 @@ public class HomeController implements Initializable {
     @FXML private Label voiture;
     @FXML private Label camionette;
     @FXML private Label moto;
+    @FXML private Label transport;
     
     
     //  statictics parc auto
@@ -91,9 +92,6 @@ public class HomeController implements Initializable {
     @FXML private Label techniqueV;
     @FXML private Label vignetteV;
     
-    @FXML private ChoiceBox <String> choiceB;
-
-    final ObservableList <missionModule> data = FXCollections.observableArrayList();
     
     Connection connection;
     //  Tables
@@ -109,10 +107,11 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<ConducteurModule, String> conducteursTableDate;
     @FXML private TableColumn<ConducteurModule, String> conducteursTablePermi;
     
-    ArrayList<ConducteurModule> conducteursAL = new ArrayList<>();
+    
    
     public void refreshConducteurs(){
-
+        
+        ArrayList<ConducteurModule> conducteursAL = new ArrayList<>();
         conducteursTableCheckBox.setCellValueFactory(new PropertyValueFactory<>("checkBox"));
         conducteursTableFirstName.setCellValueFactory(new PropertyValueFactory<>("nomConducteur"));
         conducteursTableLastName.setCellValueFactory(new PropertyValueFactory<>("prenomConducteur"));
@@ -153,9 +152,8 @@ public class HomeController implements Initializable {
         }
         
         ObservableList<ConducteurModule> conducteurOL = FXCollections.observableArrayList(conducteursAL); 
-        ConducteursTable.getItems().addAll(conducteurOL);
+        ConducteursTable.setItems(conducteurOL);
         ConducteursTable.setEditable(true);
-        ConducteursTable.refresh();
     }
     
     //  car tab
@@ -172,10 +170,11 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<vehiculeModule, String> typeVehicule;
     
     
-    private ArrayList <vehiculeModule> vehicules = new ArrayList();
+
     
     public void refreshVehicules(){
-
+        
+        ArrayList <vehiculeModule> vehicules = new ArrayList();
         VehiculesTableCheckBox.setCellValueFactory(new PropertyValueFactory<>("checkBox"));
         matricule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         marqueCar.setCellValueFactory(new PropertyValueFactory<>("marqueV"));
@@ -221,9 +220,8 @@ public class HomeController implements Initializable {
         }
         
         ObservableList<vehiculeModule> vehiculesOL = FXCollections.observableArrayList(vehicules); 
-        carsTable.getItems().addAll(vehiculesOL);
+        carsTable.setItems(vehiculesOL);
         carsTable.setEditable(true);
-        carsTable.refresh();
     }
     
     //  mission tab
@@ -239,13 +237,14 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<missionModule, Integer> tacheTablePercentage;
     @FXML private TableColumn<missionModule, String> tacheTableDesc;
     
-    private ArrayList <missionModule> mission = new ArrayList();
+
     
-    public static String searchDate ;
+    private static String searchDateVar = "" ;
     
     public void refreshMissions(){
-
-        VehiculesTableCheckBox.setCellValueFactory(new PropertyValueFactory<>("checkBox"));
+        
+        ArrayList <missionModule> mission = new ArrayList();
+       
         tacheTableLibelle.setCellValueFactory(new PropertyValueFactory<>("libelle"));
         tacheTableConducteur.setCellValueFactory(new PropertyValueFactory<>("conducteur"));
         tacheTableVehicule.setCellValueFactory(new PropertyValueFactory<>("vehicule"));
@@ -259,9 +258,8 @@ public class HomeController implements Initializable {
             Statement statement1 ;
             statement1 = connection.createStatement();
 
-            ResultSet rs1 = statement1.executeQuery("select * from missions " + searchDate );
+            ResultSet rs1 = statement1.executeQuery("select * from missions " + searchDateVar );
             while(rs1.next()){
-                
                 
                     missionModule mes = new missionModule();
                     
@@ -280,57 +278,25 @@ public class HomeController implements Initializable {
         }
         
         ObservableList<missionModule> missionsOL = FXCollections.observableArrayList(mission); 
-        missionTable.getItems().addAll(missionsOL);
+        missionTable.setItems(missionsOL);
         missionTable.setEditable(true);
-        missionTable.refresh();
     }
-  
-    
-    @FXML void searchDate(ActionEvent event) {
-        searchDate = " where dateFin = " + searchBar.getValue();
+   
+    @FXML void search (ActionEvent event) {
+        
+        searchDateVar = " where dateFin = \"" + searchBar.getValue()+"\"";
+        missionTable.getItems().clear();
         refreshMissions();
     }
-    
     /*
-    public void refreshModules(String libelle,String dateD){
-        
-        //  Get info
-        String selectedId = searchBar.getText();
-
-        
-        ArrayList modulesAL = new ArrayList();
-        
-        try {
-            
-            ResultSet rs;
-            Statement statement = connection.createStatement();
-            rs = statement.executeQuery("select * from modules where professorID =  \"" + selectedId + "\" " + libelle + " " + dateD);
-
-            while(rs.next()){
-                mission.add(new missionModule(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8)));
-            }
-                
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage()); 
-        }
-
-        ObservableList<missionModule> modulesOL = FXCollections.observableArrayList(mission);
-        missionTable.getItems().addAll(modulesOL);  
-    }
-
-    //  SEARCH BAR  ////////////////////////////////////////////////////////////
-    
-    @FXML void search(javafx.scene.input.KeyEvent event) {
-        String str = searchBar.getText();
-        if (str.equals("")){
-            refreshModules("","");
-        }else{
-            refreshModules(" and libelle like \"%" + str + "%\"","");
-        }
+     @FXML
+    void search(KeyEvent event) {
+        missionTable.getItems().clear();
+        searchDateVar = " where dateFin = \"" + searchBar.getValue()+"\"";
+        refreshMissions();
         
     }
-   */
-
+*/
     //  vignette tab
     
     @FXML private TableView<vignetteModule> vignetteTable;
@@ -338,20 +304,18 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<vignetteModule, String> vignetteTableLibelle;
     @FXML private TableColumn<vignetteModule, String> vignetteTableKm;
     @FXML private TableColumn<vignetteModule, String> vignetteTableVehicule;
-    @FXML private TableColumn<vignetteModule, String> vignetteTableConducteur;
     @FXML private TableColumn<vignetteModule, String> vignetteTableDate;
     @FXML private TableColumn<vignetteModule, String> vignetteTablePrix;
     @FXML private TableColumn<vignetteModule, String> vignetteTableStation;
  
-    
-    private ArrayList <vignetteModule> vignette = new ArrayList();
+
     
     public void refreshVignette(){
 
+        ArrayList <vignetteModule> vignette = new ArrayList();
         vignetteTableLibelle.setCellValueFactory(new PropertyValueFactory<>("libelleV"));
         vignetteTableKm.setCellValueFactory(new PropertyValueFactory<>("kmV"));
         vignetteTableVehicule.setCellValueFactory(new PropertyValueFactory<>("vehiculeV"));
-        vignetteTableConducteur.setCellValueFactory(new PropertyValueFactory<>("conducteurV"));
         vignetteTableDate.setCellValueFactory(new PropertyValueFactory<>("dateV"));
         vignetteTablePrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         vignetteTableStation.setCellValueFactory(new PropertyValueFactory<>("station"));
@@ -369,11 +333,10 @@ public class HomeController implements Initializable {
                     
                     veg.setLibelleV(rs1.getString(2));
                     veg.setKmV(rs1.getString(3));
-                    veg.setConducteurV(rs1.getString(4));
-                    veg.setVehiculeV(rs1.getString(5));
-                    veg.setDateV(rs1.getString(6));
-                    veg.setStation(rs1.getString(7));
-                    veg.setPrix(rs1.getString(8));
+                    veg.setVehiculeV(rs1.getString(4));
+                    veg.setDateV(rs1.getString(5));
+                    veg.setStation(rs1.getString(6));
+                    veg.setPrix(rs1.getString(7));
                     
                     vignette.add(veg);
             }
@@ -382,7 +345,7 @@ public class HomeController implements Initializable {
         }
         
         ObservableList<vignetteModule> vignetteOL = FXCollections.observableArrayList(vignette); 
-        vignetteTable.getItems().addAll(vignetteOL);
+        vignetteTable.setItems(vignetteOL);
         vignetteTable.setEditable(true);
     }
     
@@ -395,10 +358,11 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<reparationModule, String> prixR;
 
     
-    ArrayList <reparationModule> reparationAL = new ArrayList<>();
+    
    
     public void refreshReparation(){
-
+        
+        ArrayList <reparationModule> reparationAL = new ArrayList<>();
         vehiculeR.setCellValueFactory(new PropertyValueFactory<>("vehiculeRepa"));
         dateR.setCellValueFactory(new PropertyValueFactory<>("dateRepa"));
         descR.setCellValueFactory(new PropertyValueFactory<>("descriptionRepa"));
@@ -428,9 +392,8 @@ public class HomeController implements Initializable {
         }
         
         ObservableList<reparationModule> reparationOL = FXCollections.observableArrayList(reparationAL); 
-        reparationTable.getItems().addAll(reparationOL);
+        reparationTable.setItems(reparationOL);
         reparationTable.setEditable(true);
-        reparationTable.refresh();
     }
 
 
@@ -444,11 +407,11 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<assuranceModule, String> nombreJour;
 
     
-    ArrayList <assuranceModule> assuranceAL = new ArrayList<>();
+    
    
     public void refreshAssurance(){
         
-
+        ArrayList <assuranceModule> assuranceAL = new ArrayList<>();
         matricule1.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         marqueV.setCellValueFactory(new PropertyValueFactory<>("marqueV"));
         assurance1.setCellValueFactory(new PropertyValueFactory<>("dateAssur"));
@@ -486,11 +449,8 @@ public class HomeController implements Initializable {
         }
         
         ObservableList<assuranceModule> assuranceOL = FXCollections.observableArrayList(assuranceAL); 
-        AssuranceTable.getItems().addAll(assuranceOL);
+        AssuranceTable.setItems(assuranceOL);
         AssuranceTable.setEditable(true);
-        AssuranceTable.refresh();
-        
-        
     }
     
      //  vidange tab
@@ -502,10 +462,11 @@ public class HomeController implements Initializable {
     @FXML private TableColumn<assuranceModule, String> nombreJour2;
 
     
-    ArrayList <vidangeModule> vidangeAL = new ArrayList<>();
+    
    
     public void refreshVidange(){
 
+        ArrayList <vidangeModule> vidangeAL = new ArrayList<>();
         matricule11.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         marqueVe.setCellValueFactory(new PropertyValueFactory<>("marqueV"));
         vidange1.setCellValueFactory(new PropertyValueFactory<>("dateVidange"));
@@ -540,9 +501,8 @@ public class HomeController implements Initializable {
         }
         
         ObservableList<vidangeModule> vidangeOL = FXCollections.observableArrayList(vidangeAL); 
-        VidangeTable.getItems().addAll(vidangeOL);
+        VidangeTable.setItems(vidangeOL);
         VidangeTable.setEditable(true);
-        VidangeTable.refresh();
     }
     
     //  STATISTICS  ////////////////////////////////////////////////////////////
@@ -588,11 +548,11 @@ public class HomeController implements Initializable {
         //  conducteurs sta    ////////////////////////////////////////////////////
         
         //  conducteurs Statistics
-        int mo=0,vo=0,ca=0;
+        int mo=0,vo=0,ca=0,tr=0;
         try {
             
-            ResultSet rs1, rs2, rs3;
-            Statement statement1 , statement2, statement3;
+            ResultSet rs1, rs2, rs3,rs4;
+            Statement statement1 , statement2, statement3,statement4;
             
             statement1 = connection.createStatement();
             rs1 = statement1.executeQuery("select count(*) from typevehicule where typeV = \"voiture\"  ");
@@ -608,14 +568,21 @@ public class HomeController implements Initializable {
             rs3 = statement3.executeQuery("select count(*) from typevehicule where typeV = \"moto\" ");
             rs3.next();
             mo = rs3.getInt(1);
+            
+            statement4 = connection.createStatement();
+            rs4 = statement4.executeQuery("select count(*) from typevehicule where typeV = \"transport\" ");
+            rs4.next();
+            tr = rs4.getInt(1);
 
             moto.setText(""+ (int) (mo));
             voiture.setText(""+ (int) (vo));
             camionette.setText(""+ (int) (ca));
+            transport.setText(""+ (int) (tr));
             
             statement1.close();
             statement2.close();
             statement3.close();
+            statement4.close();
                     
         } catch (Exception ex) {
             System.out.println(ex.getMessage()); 
@@ -711,6 +678,7 @@ public class HomeController implements Initializable {
             ex.printStackTrace();
         }
         
+        /*
         int vidange=0;
         int i2=0;
         try {
@@ -738,6 +706,9 @@ public class HomeController implements Initializable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+        */
+        
         
         //  conducteurs Statistics
         int tec=0,veg=0;
@@ -826,9 +797,7 @@ public class HomeController implements Initializable {
         }
 
     }
-    
-    
-    
+
     //  edit Drivers  //////////////////////////////////////////////////////////////
     
     @FXML void editC(ActionEvent event) {
@@ -925,9 +894,7 @@ public class HomeController implements Initializable {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         connection = DbConnection.DbConnect();

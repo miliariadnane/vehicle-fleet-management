@@ -84,7 +84,7 @@
       </HBox>
       <HBox layoutY="267.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="471.0">
          <children>
-            <JFXTextField fx:id="editEmail" labelFloat="true" prefHeight="25.0" prefWidth="180.0" promptText="EMAIL">
+            <JFXTextField fx:id="editEmail" labelFloat="true" prefHeight="25.0" prefWidth="180.0" promptText="NUM TELEPHONE">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin>

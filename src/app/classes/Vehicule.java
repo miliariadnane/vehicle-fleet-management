@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author pc
  */
-public class Vehicule {
+public class Vehicule{
     
     private String matricule;
     private String marqueV;
@@ -110,8 +110,6 @@ public class Vehicule {
 
     @Override
     public String toString() {
-        return   matricule + "  " + marqueV + "  " + typeV ;
+        return   matricule + "  " + marqueV + "  ";
     }
-
-     
 }

@@ -4,6 +4,7 @@ import app.classes.Conducteur;
 import app.classes.DbConnection;
 import static app.classes.DbConnection.connection;
 import app.classes.Vehicule;
+import app.home.HomeController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -43,7 +44,6 @@ public class MissionController implements Initializable {
     
     @FXML private JFXComboBox<Conducteur> newConducteur;
     @FXML private JFXComboBox<Vehicule> newVehicule;
-    @FXML private JFXComboBox newType;
     @FXML private JFXTextField libelle;
     @FXML private JFXTextArea description;
     @FXML private JFXDatePicker dateD;
@@ -82,7 +82,7 @@ public class MissionController implements Initializable {
         }  
         
         try {
-            Statement statement,statement1,statement2;
+                Statement statement,statement1,statement2;
                     
                 statement = connection.createStatement();
                 
@@ -90,16 +90,17 @@ public class MissionController implements Initializable {
                 
                 statement1 = connection.createStatement();
                 
-                statement1.executeUpdate("update vehicules set exitsV = 1 where vehiculesMatr = '" + vehi.getMatricule() + "' ");
+                statement1.executeUpdate("update vehicules set exitsV = 2 where vehiculesMatr = '" + vehi.getMatricule() + "' ");
                 
                 statement2 = connection.createStatement();
                 
-                statement2.executeUpdate("update conducteurs set existC = 1 where conducteursId = '" + condu.getIdConducteur() + "' ");             
+                statement2.executeUpdate("update conducteurs set existC = 2 where conducteursId = '" + condu.getIdConducteur() + "' ");             
                 
             
             statement1.close();
             statement2.close();
             statement.close();
+            HomeController.getInstance().refreshMissions();
 
         }catch (Exception ex) {
             ex.printStackTrace();
@@ -139,16 +140,14 @@ public class MissionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        refreshMissionsDate();
-        
+
         //  Set conducteurs
         ArrayList conducteursAL = new ArrayList();
         
         try {
             ResultSet rs1;
             Statement statement1 = connection.createStatement();
-            rs1 = statement1.executeQuery("select * from conducteurs where existC = 0");
+            rs1 = statement1.executeQuery("select * from conducteurs where existC = 0 ");
                      
             while(rs1.next()){
                 conducteursAL.add(new Conducteur(rs1.getString(2), rs1.getString(3), rs1.getString(3), rs1.getString(4), rs1.getString(5), rs1.getString(6) ) );
@@ -167,7 +166,7 @@ public class MissionController implements Initializable {
         try {
             ResultSet rs2;
             Statement statement2 = connection.createStatement();
-            rs2 = statement2.executeQuery("select * from vehicules where exitsV = 0");
+            rs2 = statement2.executeQuery("select * from vehicules where exitsV = 0 ");
 
             while(rs2.next()){
                 
@@ -177,13 +176,11 @@ public class MissionController implements Initializable {
             }catch (Exception ex) {
              ex.printStackTrace();
         }
-
+        
         ObservableList<Vehicule> vehiculeOL = FXCollections.observableArrayList(vehiculesAL);
         newVehicule.setItems(vehiculeOL);
-
+        refreshMissionsDate();
     }
-    
-    
 }    
     
 

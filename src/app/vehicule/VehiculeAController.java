@@ -8,6 +8,7 @@ package app.vehicule;
 import app.classes.DbConnection;
 import static app.classes.DbConnection.connection;
 import app.conducteur.conducteurAController;
+import app.home.HomeController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -69,7 +70,7 @@ public class VehiculeAController implements Initializable {
     //
     @FXML private JFXComboBox typeC;
     
-    @FXML private JFXRadioButton moto,voiture,camionette;
+    @FXML private JFXRadioButton moto,voiture,camionette,transport;
     
     @FXML private ImageView img;
     @FXML private ImageView img1;
@@ -155,12 +156,17 @@ public class VehiculeAController implements Initializable {
             typeV.add("moto"); 
         if (voiture.isSelected())
             typeV.add("voiture"); 
+        if (transport.isSelected())
+            typeV.add("transport");
         if (camionette.isSelected())
-            typeV.add("camionette"); 
+            typeV.add("camionette");
+         
+        
         typeV.forEach(e->{
             try {
                 Statement statement = connection.createStatement();
                 statement.execute("INSERT INTO `typevehicule`(`vehiculesMatr`, `typeV`) VALUES ('" + mat + "','" + e + "') ");
+                
             } catch (SQLException ex) {
                 Logger.getLogger(conducteurAController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -172,6 +178,7 @@ public class VehiculeAController implements Initializable {
             statement.execute("insert into vehicules(vehiculesMatr, vehiculesMarque, vehiculesCarb, vehiculesDateAss, vehiculesDateAss2, vehiculesDateVid) values('" + mat + "','" + marq + "','" + typeCar + "','" + dateAssu + "','" + dateAssu2 + "','" + dateVid + "')");
 
             statement.close();
+            HomeController.getInstance().refreshVehicules();
 
         }catch (Exception ex) {
             ex.printStackTrace();

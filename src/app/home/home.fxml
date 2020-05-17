@@ -138,22 +138,12 @@
                                     <Font name="Maiandra GD" size="28.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="665.0" layoutY="342.0" prefHeight="18.0" prefWidth="111.0" text="Alerte assurance : " textFill="#f2e8e8" />
-                              <Label layoutX="665.0" layoutY="385.0" prefHeight="18.0" prefWidth="97.0" text="Alerte vidange :" textFill="#f2e8e8" />
-                              <Label fx:id="alerteVid" layoutX="757.0" layoutY="382.0" textFill="#f4ae15">
+                              <Label layoutX="667.0" layoutY="361.0" prefHeight="18.0" prefWidth="111.0" text="Alerte assurance : " textFill="#f2e8e8" />
+                              <Label fx:id="alerteAss" layoutX="760.0" layoutY="356.0" prefHeight="27.0" prefWidth="24.0" textFill="#f4ae15">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font></Label>
-                              <Label fx:id="alerteAss" layoutX="775.0" layoutY="338.0" textFill="#f4ae15">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font></Label>
-                              <Label layoutX="773.0" layoutY="386.0" prefHeight="18.0" prefWidth="131.0" text="(reste moins de 15 jours)">
-                                 <font>
-                                    <Font name="Maiandra GD" size="11.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="790.0" layoutY="343.0" prefHeight="18.0" prefWidth="131.0" text="(reste moins de 15 jours)">
+                              <Label layoutX="790.0" layoutY="360.0" prefHeight="18.0" prefWidth="131.0" text="(reste moins de 15 jours)">
                                  <font>
                                     <Font name="Maiandra GD" size="11.0" />
                                  </font>
@@ -176,15 +166,17 @@
                                  </font>
                               </Label>
                               <Label layoutX="412.0" layoutY="238.0" prefHeight="18.0" prefWidth="115.0" text="Nombre de motos :" textFill="#f2e8e8" />
-                              <Label layoutX="411.0" layoutY="269.0" prefHeight="18.0" prefWidth="168.0" text="Nombre de voitures :" textFill="WHITE" />
-                              <Label layoutX="411.0" layoutY="297.0" prefHeight="18.0" prefWidth="154.0" text="Nombre de camionettes:" textFill="WHITE" />
+                              <Label layoutX="411.0" layoutY="262.0" prefHeight="18.0" prefWidth="124.0" text="Nombre de voitures :" textFill="WHITE" />
+                              <Label layoutX="411.0" layoutY="284.0" prefHeight="18.0" prefWidth="147.0" text="Nombre de camionettes:" textFill="WHITE" />
+                              <Label layoutX="410.0" layoutY="305.0" prefHeight="18.0" prefWidth="131.0" text="Nombre de transport:" textFill="WHITE" />
                               <Label fx:id="moto" layoutX="535.0" layoutY="239.0" textFill="WHITE" />
-                              <Label fx:id="voiture" layoutX="542.0" layoutY="270.0" textFill="WHITE" />
-                              <Label fx:id="camionette" layoutX="564.0" layoutY="298.0" textFill="WHITE" />
+                              <Label fx:id="voiture" layoutX="536.0" layoutY="264.0" textFill="WHITE" />
+                              <Label fx:id="camionette" layoutX="560.0" layoutY="285.0" textFill="WHITE" />
                               <Label layoutX="140.0" layoutY="171.0" prefHeight="18.0" prefWidth="154.0" text="Dépense technique :" textFill="WHITE" />
                               <Label layoutX="140.0" layoutY="192.0" prefHeight="18.0" prefWidth="154.0" text="Dépense vignette :" textFill="WHITE" />
                               <Label fx:id="techniqueV" layoutX="266.0" layoutY="171.0" prefHeight="18.0" prefWidth="30.0" textFill="WHITE" />
                               <Label fx:id="vignetteV" layoutX="251.0" layoutY="193.0" prefHeight="18.0" prefWidth="30.0" textFill="WHITE" />
+                              <Label fx:id="transport" layoutX="540.0" layoutY="306.0" textFill="WHITE" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -214,7 +206,7 @@
                                     <TableColumn fx:id="conducteursTableCheckBox" prefWidth="26.0" resizable="false" sortable="false" />
                                     <TableColumn fx:id="conducteursTableFirstName" prefWidth="124.99996948242188" text="Nom" />
                                     <TableColumn fx:id="conducteursTableLastName" prefWidth="154.99996948242188" text="Prénom" />
-                                    <TableColumn fx:id="conducteursTableEmail" prefWidth="176.00006103515625" text="Email" />
+                                    <TableColumn fx:id="conducteursTableEmail" prefWidth="176.00006103515625" text="N° Telephone" />
                                     <TableColumn fx:id="conducteursTableSex" prefWidth="89.0" text="Genre" />
                                     <TableColumn fx:id="conducteursTableDate" prefWidth="89.0" text="date" />
                                     <TableColumn fx:id="conducteursTablePermi" prefWidth="89.0" text="permis" />
@@ -297,7 +289,7 @@
                                  </columnResizePolicy>
                               </TableView>
                               <JFXButton layoutX="14.0" layoutY="5.0" onAction="#module" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #47747B;" text="Mission" textFill="WHITE" />
-                              <JFXDatePicker fx:id="searchBar" layoutX="778.0" layoutY="6.0" onAction="#searchDate" />
+                              <JFXDatePicker fx:id="searchBar" layoutX="777.0" layoutY="5.0" onAction="#search" promptText="Chercher par Date Fin" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -318,9 +310,8 @@
                                     <TableColumn fx:id="missionTableCheckBox" prefWidth="26.0" resizable="false" sortable="false" />
                                     <TableColumn fx:id="vignetteTableLibelle" prefWidth="124.99996948242188" text="Libelle" />
                                     <TableColumn fx:id="vignetteTableVehicule" prefWidth="176.00006103515625" text="Véhicule" />
-                                    <TableColumn fx:id="vignetteTableConducteur" prefWidth="89.0" text="Conducteur" />
                                     <TableColumn fx:id="vignetteTableDate" prefWidth="161.0" text="Date " />
-                                    <TableColumn fx:id="vignetteTableKm" prefWidth="154.99996948242188" text="Kilométrage" />
+                                    <TableColumn fx:id="vignetteTableKm" prefWidth="154.99996948242188" text="Littrage" />
                                     <TableColumn fx:id="vignetteTablePrix" prefWidth="161.0" text="Station" />
                                     <TableColumn fx:id="vignetteTableStation" prefWidth="161.0" text="Prix" />
                                  </columns>

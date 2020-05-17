@@ -184,6 +184,7 @@ public class conducteurAController implements Initializable {
                 statement.execute("insert into conducteurs(conducteursId,nom,prenom,genre,email,dateN,existC) values('" + id + "','" + fn + "','" + ln + "','" + sx + "','" + em + "', '" + date + "','0')");
 
             statement.close();
+            HomeController.getInstance().refreshConducteurs();
 
         }catch (Exception ex) {
             ex.printStackTrace();

@@ -209,7 +209,7 @@
                                     <Insets left="30.0" right="30.0" top="5.0" />
                                  </padding>
                               </HBox>
-                              <JFXButton layoutX="88.0" layoutY="386.0" onAction="#singing" prefHeight="37.0" prefWidth="101.0" style="-fx-background-color: #16AA1F;" text="Se connecter" textAlignment="CENTER" textFill="WHITE">
+                              <JFXButton layoutX="88.0" layoutY="386.0" onAction="#singing" prefHeight="37.0" prefWidth="110.0" style="-fx-background-color: #16AA1F;" text="Se connecter" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

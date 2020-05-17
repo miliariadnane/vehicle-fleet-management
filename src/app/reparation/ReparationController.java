@@ -9,6 +9,7 @@ import app.classes.Conducteur;
 import app.classes.DbConnection;
 import static app.classes.DbConnection.connection;
 import app.classes.Vehicule;
+import app.home.HomeController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -79,6 +80,7 @@ public class ReparationController implements Initializable {
                 statement.execute("insert into repations values('" + vehi + "','" + dateRep + "','" + descR + "','" + prixReparation + "')");
 
             statement.close();
+            HomeController.getInstance().refreshReparation();
 
         }catch (Exception ex) {
             ex.printStackTrace();

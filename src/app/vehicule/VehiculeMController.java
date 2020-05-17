@@ -9,6 +9,7 @@ import app.classes.Conducteur;
 import static app.classes.DbConnection.connection;
 import app.classes.Vehicule;
 import app.conducteur.conducteurAController;
+import app.home.HomeController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -56,7 +57,7 @@ public class VehiculeMController implements Initializable {
     @FXML private JFXDatePicker editDateAss;
     @FXML private JFXDatePicker editDateAss2;
     @FXML private JFXDatePicker editDateV;
-    @FXML private JFXRadioButton moto,voiture,camionette;
+    @FXML private JFXRadioButton moto,voiture,camionette,transport;
     
     @FXML void selectedVehicule(ActionEvent event) {
         
@@ -126,6 +127,7 @@ public class VehiculeMController implements Initializable {
                 
                 statement1.executeUpdate("update vehicules set vehiculesMatr = '" + editMatricule.getText() + "',vehiculesMarque = '" + editMarque.getText() + "', vehiculesCarb = '" + editCarburant.getValue()+ "', vehiculesDateAss = '" + date1 + "', vehiculesDateAss2 = '" + date2 + "', vehiculesDateVid = '"+ date3 + "' where vehiculesMatr = '" + selectedVehiculeId + "'");
                 statement1.close();
+                HomeController.getInstance().refreshVehicules();
                 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -137,11 +139,14 @@ public class VehiculeMController implements Initializable {
             if (voiture.isSelected())
                 typeV.add("voiture"); 
             if (camionette.isSelected())
-                typeV.add("camionette"); 
+                typeV.add("camionette");
+            if (transport.isSelected())
+                typeV.add("transport"); 
             typeV.forEach(e->{
                 try {
                     Statement statement = connection.createStatement();
                     statement.execute("INSERT INTO `typevehicule`(`vehiculesMatr`, `typeV`) VALUES ('" + mat + "','" + e + "') ");
+                    HomeController.getInstance().refreshVehicules();
                 } catch (SQLException ex) {
                     Logger.getLogger(conducteurAController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -190,6 +195,7 @@ public class VehiculeMController implements Initializable {
         try {
             PreparedStatement statment = (PreparedStatement) connection.prepareStatement("delete from vehicules where vehiculesMatr = '"+ selectedVehiculeId +"' ");
             statment.executeUpdate();
+            HomeController.getInstance().refreshVehicules();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n" + e.getCause());
         }
@@ -197,6 +203,7 @@ public class VehiculeMController implements Initializable {
         try {
             PreparedStatement statment = (PreparedStatement) connection.prepareStatement("delete from typevehicule where vehiculesMatr = '"+ selectedVehiculeId +"'");
             statment.executeUpdate();
+            HomeController.getInstance().refreshVehicules();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n" + e.getCause());
         }

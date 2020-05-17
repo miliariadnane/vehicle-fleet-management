@@ -124,6 +124,7 @@ public class conducteurMController implements Initializable {
                 
                 statement1.executeUpdate("update conducteurs set conducteursId = '" + editCIN.getText() + "' ,nom = '" + editNom.getText() + "', prenom = '" + editPrenom.getText()+ "', genre = '" + editGenre.getText()+"', email = '" + editEmail.getText()+ "', dateN = '"+ date1 + "' where conducteursId = '" + selectedConducteurId + "'");
                 statement1.close();
+                HomeController.getInstance().refreshConducteurs();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -173,6 +174,7 @@ public class conducteurMController implements Initializable {
         try {
             PreparedStatement statment = (PreparedStatement) connection.prepareStatement("delete from conducteurs where conducteursId = '"+ selectedConducteurId +"' ");
             statment.executeUpdate();
+            HomeController.getInstance().refreshConducteurs();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n" + e.getCause());
         }
@@ -180,6 +182,7 @@ public class conducteurMController implements Initializable {
         try {
             PreparedStatement statment = (PreparedStatement) connection.prepareStatement("delete from typepermi where conducteursId = '"+ selectedConducteurId +"'");
             statment.executeUpdate();
+            HomeController.getInstance().refreshConducteurs();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n" + e.getCause());
         }

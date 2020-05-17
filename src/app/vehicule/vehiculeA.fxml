@@ -121,32 +121,15 @@
                   </JFXDatePicker>
                </children>
             </HBox>
-            <HBox layoutX="-2.0" layoutY="377.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="484.0">
+            <HBox layoutX="-2.0" layoutY="390.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="484.0">
                <padding>
                   <Insets left="30.0" right="30.0" top="10.0" />
                </padding>
                <children>
-                  <JFXRadioButton fx:id="moto" text="MOTO" />
-                  <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <image>
-                        <Image url="@../../files.img/motorbiking.png" />
-                     </image>
-                  </ImageView>
-                  <JFXRadioButton fx:id="voiture" text="VOITURE" />
-                  <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../files.img/suv%20(1).png" />
-                     </image>
-                  </ImageView>
-                  <JFXRadioButton fx:id="camionette" text="CAMIONNETTE" />
-                  <ImageView fitHeight="53.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../files.img/delivery-truck.png" />
-                     </image>
-                  </ImageView>
+                  <JFXRadioButton fx:id="moto" text="MOTO        " />
+                  <JFXRadioButton fx:id="voiture" text="VOITURE      " />
+                  <JFXRadioButton fx:id="camionette" text="CAMIONNETTE       " />
+                  <JFXRadioButton fx:id="transport" text="Transport" />
                </children>
             </HBox>
          </children>

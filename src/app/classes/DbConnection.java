@@ -17,5 +17,5 @@ public class DbConnection {
             ex.printStackTrace();
         }
         return null;
-    }  
+    }
 }

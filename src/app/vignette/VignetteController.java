@@ -11,6 +11,7 @@ import static app.classes.DbConnection.connection;
 import app.classes.Vehicule;
 import app.classes.Vignette;
 import app.classes.mission;
+import app.home.HomeController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -34,6 +35,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * FXML Controller class
@@ -44,13 +48,17 @@ public class VignetteController implements Initializable {
 
     @FXML private JFXButton vignetteBtnS;
     
-    @FXML private JFXComboBox<Conducteur> newConducteurV;
-    @FXML private JFXComboBox<Vehicule> newVehiculeV;
     @FXML private JFXTextField km;
+    @FXML private JFXComboBox<Vehicule> newVehiculeV;
+    @FXML private JFXTextField lettre;
     @FXML private JFXTextField libelleV;
     @FXML private JFXDatePicker dateV;
     @FXML private JFXTextField prix;
     @FXML private JFXTextField station;
+    @FXML private RadioButton nv;
+    @FXML private ToggleGroup kmtoggle;
+    @FXML private RadioButton fin;
+    @FXML private Label kmparcoru;
 
     ////////////////////////
 //  METHODES ACTIONS  //
@@ -65,13 +73,15 @@ public class VignetteController implements Initializable {
         
         String lib = libelleV.getText();
         String dateVegnette = dateV.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String kmV = km.getText();
-        Conducteur condu = newConducteurV.getValue();
+        String kmV = lettre.getText();
+        String kmVic = km.getText();
         Vehicule vehi = newVehiculeV.getValue();
         String prixV = prix.getText();
         String stationV = station.getText();
+        
+        Vehicule savedvehi;
 
-        if (lib.equals("") || prixV.equals("") || stationV.equals("") || stationV.equals("") || condu.equals("") || vehi.equals("") ){
+        if (lib.equals("") || prixV.equals("") || stationV.equals("") || stationV.equals("") || km.equals("") || vehi.equals("") ){
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erreur");
@@ -83,18 +93,63 @@ public class VignetteController implements Initializable {
         }  
         
         try {
-            Statement statement;
+            Statement statement,statment2, statment3;
                     
                 statement = connection.createStatement();
+                statment2 = connection.createStatement();
+                statment3 = connection.createStatement();
+                ResultSet rs2;
                 
-                statement.execute("insert into vignette (libelleV,kmV,conducteurV,vehiculeV,dateV,station,prix) values('" + lib + "','" + kmV + "','" + condu.getIdConducteur() + "','" + vehi.getMatricule() + "','" + dateVegnette + "', '" + stationV + "', '" + prixV + "')");
-
+                statement.execute("insert into vignette (libelleV,kmV,vehiculeV,dateV,station,prix) values('" + lib + "','" + kmV + "','" + vehi.getMatricule() + "','" + dateVegnette + "', '" + stationV + "', '" + prixV + "')");
+                rs2 = statment2.executeQuery("select sum(vihecule) from kilometrage where vihecule = '" + vehi.getMatricule() + "'");
+                rs2.next();
+                if(rs2.getInt(1) == 0){
+                    statment3.execute("insert into kilometrage (vihecule, kmitit, kmfin) values('" + vehi.getMatricule() + "'," + Integer.parseInt(km.getText()) + "," + Integer.parseInt(km.getText()) +")");
+                }else{
+                    if(nv.isSelected()){
+                        statment3.executeUpdate("update kilometrage set kmitit = " + Integer.parseInt(km.getText()) + ",kmfin = " + Integer.parseInt(km.getText()) +  " where vihecule = '"+ vehi.getMatricule() +"'");
+                    }else{
+                        statment3.executeUpdate("update kilometrage set kmfin = " + Integer.parseInt(km.getText()) +  " where vihecule = '"+ vehi.getMatricule() +"'");
+                    }
+                }
                 statement.close();
+                HomeController.getInstance().refreshVignette();
 
         }catch (Exception ex) {
             ex.printStackTrace();
         }
+        
+        savedvehi= vehi;
         vignetteBtnS.getScene().getWindow().hide();
+        
+        
+        int km = 0;
+        try {
+            Statement statement = connection.createStatement();
+            Statement statement2 = connection.createStatement();
+            ResultSet rs;
+            rs = statement.executeQuery("select * from kilometrage where vihecule = '" + savedvehi.getMatricule() + "'");
+            
+            if(rs.next() == true){
+                km = rs.getInt(4) - rs.getInt(3);
+                if(km >= 10000){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText("Information dialog");
+                    alert.setContentText("SVP - Changer le vidange\nEtes vous le changer");
+                    ButtonType button1 = new ButtonType("Rempoter le vidange");
+                    ButtonType button2 = new ButtonType("Le vidange renouveler");
+                    alert.getButtonTypes().setAll(button1,button2);
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if(result.get()== button2){
+                        statement2.executeUpdate("update kilometrage set kmitit = " + rs.getInt(4) + " where vihecule = '"+ rs.getString(2) +"'");
+                    }
+                }
+            }
+                
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
     
     //  CLOSE  //
@@ -102,9 +157,32 @@ public class VignetteController implements Initializable {
         vignetteBtnS.getScene().getWindow().hide();
     }
 
+    @FXML void selectV(ActionEvent event) {
+        Vehicule vehi = newVehiculeV.getValue();
+        int km = 0;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs;
+            rs = statement.executeQuery("select * from kilometrage where vihecule = '" + vehi.getMatricule() + "'");
+            
+            if(rs.next() == true){
+                km = rs.getInt(4) - rs.getInt(3);
+                kmparcoru.setText(km + " Km");
+            }else{
+                kmparcoru.setText("Aucun information sur cette vehicule");
+         
+            }
+                
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        fin.selectedProperty().setValue(Boolean.TRUE);
         //  Set conducteurs
         ArrayList conducteursAL = new ArrayList();
         
@@ -121,7 +199,7 @@ public class VignetteController implements Initializable {
         }
 
         ObservableList<Conducteur> conducteurOL = FXCollections.observableArrayList(conducteursAL);
-        newConducteurV.setItems(conducteurOL);
+      
         
         //  Set vehicules
         ArrayList vehiculesAL = new ArrayList();
